@@ -12,6 +12,11 @@ description = "Compute per-gene FPKM from a BAM + BED12 model — Rust port of R
 name = "rsomics-fpkm-count"
 path = "src/main.rs"
 
+
+[lib]
+name = "rsomics_fpkm_count"
+path = "src/lib.rs"
+doctest = false
 [[bench]]
 name = "fpkm_count"
 harness = false
