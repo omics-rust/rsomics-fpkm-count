@@ -9,11 +9,8 @@ use crate::bed::Gene;
 use crate::strand::StrandRules;
 
 pub struct FpkmOpts {
-    /// Minimum MAPQ to be considered uniquely mapped.
     pub min_mapq: u8,
-    /// Skip reads with MAPQ below `min_mapq` (mirrors `-u`).
     pub unique_only: bool,
-    /// Strand specificity rules; `None` = unstranded.
     pub strand: Option<StrandRules>,
 }
 
@@ -27,15 +24,11 @@ impl Default for FpkmOpts {
     }
 }
 
-/// Fragment count per gene and total aligned fragments.
 pub struct CountResult {
-    /// Fragment count per gene, parallel to the input `genes` slice.
     pub frag_counts: Vec<f64>,
-    /// Total unique aligned fragments (pairs deduplicated by QNAME).
     pub total_fragments: f64,
 }
 
-/// Count fragments per gene from `bam_path`.
 pub fn count_bam(bam_path: &Path, genes: &[Gene], opts: &FpkmOpts) -> Result<CountResult> {
     let exon_by_chrom = build_exon_index(genes);
 
